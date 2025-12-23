@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        European countries have days of week starting with Monday (number 1),
+         then Tuesday (number 2) and till Sunday (number 7).
+        */
+        function main(date) {
+            let day = new Date(date).getDay();
+            if (day==0) {
+                day = 7;
+            }
+            return day;
+        }
+        console.log(main("2012-01-03"));
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function main(date) {
+            let date1 = new Date("2012-01-03");
+            // console.log(date1)
+            let dayCode = date1.getDay();
+            switch(dayCode){
+                case 0 : return "SU";
+                break;
+                case 1 : return "MO";
+                break;
+                case 2 : return "TU";
+                break;
+                case 3 : return "WE";
+                break;
+                case 4 : return "TH";
+                break;
+                case 5 : return "FR";
+                break;
+                case 6 : return "SA";
+            }
+        }
+        console.log(main("2012-00-03"));
+
+
+        //2nd way //shorter version
+        function main2(date) {
+            let date1 = new Date("2012-01-03");
+            // console.log(date1)
+            let dayCode = date1.getDay();
+            let days = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"];
+            return days[dayCode];
+        }
+        console.log(main2("2012-00-03"));
+    </script>
+</body>
+</html>

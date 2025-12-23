@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function main(date, day) {
+            console.log(date);
+            // return new Date(date - day);
+            // let newDate = date; this will also modify original given date
+
+            //make independent new date object
+            let newDate = new Date(date);
+            newDate.setDate(date.getDate() - day);
+            return newDate;
+        }
+        console.log(main(new Date(2015, 0, 2), 2));
+    </script>
+</body>
+</html>

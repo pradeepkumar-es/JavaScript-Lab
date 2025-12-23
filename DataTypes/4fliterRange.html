@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function main(arr, a, b) {
+            console.log(arr);
+            let res =  arr.filter((item, index, array)=>(item >= a && item <= b)); //filter return new array with no modification of original array
+            console.log(arr);
+            return res;
+        }
+        console.log(main([5, 3, 8, 1], 1, 4));
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+
+        // note: Any number from the interval min..max must appear with the same probability.
+      const randomInRange = (min, max) => {
+        // Write your code here
+        // return min+Math.random()*(max-min); // random float point number b/w [min,max);
+        let rand = min + Math.random() * (max - min); //this will not give equal probability of coming edge number bcz of the Math.round()
+        //so we need t strecth the edge by 0.5 before rouding
+        let rand2 = min-0.5 + Math.random() * ((max + 0.5) - (min - 0.5)); //this has equal probabiity of coming each random integer in range
+        // return Math.round(rand2);
+
+        //alternative way using Math.floor() but in min to max+1 as Math.floor() giver lower integer of decimal number
+        let rand3 = min + Math.random() * (max+1 - min);
+        return Math.floor(rand3)
+      };
+      console.log(randomInRange(1, 3));
+    </script>
+  </body>
+</html>

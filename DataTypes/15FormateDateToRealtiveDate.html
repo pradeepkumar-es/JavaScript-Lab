@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function main(date) {
+            let now  = new Date();
+            let diff = (now - date) /1000; //s
+            if(diff < 1) {
+                return "right now";
+            } else if ((diff / 60) < 1) {
+                return `${diff} sec ago`;
+            } else if ((diff /3600) < 1) {
+                return `${diff/60} min ago`
+            } else {
+                let d =  new Date(date);
+                d = [
+                    '0' + d.getDate(),
+                    '0' + d.getMonth(),
+                    ''  + d.getFullYear(),
+                    '0' + d.getHours(),
+                    '0' + d.getMinutes(),
+                    '0' + d.getSeconds(),
+                 ].map(item => item.slice(-2)) //will make each of 2 digit
+                return `${d.slice(0, 3).join('.')} ${d.slice(3).join(':')}`;
+            }
+        }
+        console.log(main(new Date - 1)); //parameter is 1 ms less than timestamp // new Date nad new Date() is same, parenthesis is optional when no argument
+        console.log(main(new Date - 30*1000));
+        console.log(main(new Date - 5*60*1000));
+        console.log(main(new Date - 86400 * 1000));
+
+    </script>
+</body>
+</html>

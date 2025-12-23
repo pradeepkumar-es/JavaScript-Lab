@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let schedule = {};
+
+      alert(isEmpty(schedule)); // true
+
+      schedule["8:30"] = "get up";
+
+      alert(isEmpty(schedule)); // false
+
+      //to make isEmpty() fxn
+      function isEmpty(obj) {
+        let count = 0;
+        for (let key in obj) {
+          count++;
+          // if ( key ) {
+          //     return false;
+          // } else {
+          //     return true;
+          // }
+        }
+        return count > 0;
+      }
+
+      //other way, direct way
+      function isEmpty2(obj) {
+        for (let key in obj) {
+          //if loop started (or key in obj is true), that means property exist
+          return false;
+        }
+        return true;
+      }
+
+      let salaries = {
+        John: 100,
+        Ann: 160,
+        Pete: 130,
+      };
+
+      let sum = 0;
+      for (let salary in salaries) {
+        sum += salary;
+      }
+      alert(sum);
+
+      // before the call
+      let menu = {
+        width: 200,
+        height: 300,
+        title: "My menu",
+      };
+
+      multiplyNumeric(menu);
+
+      // after the call
+    //   menu = {
+    //     width: 400,
+    //     height: 600,
+    //     title: "My menu",
+    //   };
+    function multiplyNumeric(menu) {
+        for (let key in menu) {
+            if (typeof menu[key] === "number") {
+                menu[key]=2*menu[key];
+            }
+        }
+    }
+    console.log(menu);
+
+
+    //a and b are not defined initially because JavaScript objects are dynamic,
+    //  and properties can be added anytime using this.a = value inside methods.
+    </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function main(arr) {
+            return arr.slice().sort(); //if no parameter is provided in slice then it will copy everything from arr
+                                       //if no function in provided in sort then it will sort arr ele as string by default
+            //we can also use spread operator for copying and provide function in sort                         
+        }
+        console.log(main(["HTML", "JavaScript", "CSS"]));
+    </script>
+</body>
+</html>

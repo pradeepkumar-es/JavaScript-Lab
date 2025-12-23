@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //method 1: using pure logic
+      function main(year, month) {
+        if (month == 1) {
+          return isLeapYear(year) ? 29 : 28;
+        } else if (
+          (month % 2 == 0 && month <= 6) ||
+          (month % 2 !== 0 && month >= 7)
+        ) {
+          return 31;
+        } else if (
+          (month <= 6 && month % 2 !== 0) ||
+          (month % 2 == 0 && month >= 7)
+        ) {
+          return 30;
+        }
+      }
+      function isLeapYear(year) {
+        if (year % 4 == 0) {
+          if (year % 100 == 0) {
+            if (year % 400 == 0) {
+              return true;
+            } else {
+              return false;
+            }
+          } else {
+            return true;
+          }
+        } else {
+          return false;
+        }
+      }
+      console.log(main(2000, 6)); // year, month -> 0 based
+
+      //method 2: using date object autocorrection property
+      function main2(year, month) {
+        let date = new Date(year, month + 1, 0); // technically date start from 1 but we can pass any number date object auto adjust
+                                                 // since no 0 date, it will go 1 day back means going previous month
+        return date.getDate();  
+      }
+      console.log(main2(2000, 1));
+    </script>
+  </body>
+</html>

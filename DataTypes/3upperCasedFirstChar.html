@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        Write a function ucFirst(str) that returns the string str with the uppercased first character, for instance:
+
+ucFirst("john") == "John";
+        */
+
+        //since string is immutable in javascript we can not replace first charcter, we have to make new string
+        function ucFirst(str) {
+            //if str is empty then str[0] will be undefined, and undefined does not have toUpperCase() method, hence we will get error
+            //so we have to add a test before doing operations
+            if(!str) return str;
+            let newStr = str[0].toUpperCase() + str.slice(1);
+            return newStr;
+        }
+        console.log(ucFirst("john"));
+    </script>
+</body>
+</html>

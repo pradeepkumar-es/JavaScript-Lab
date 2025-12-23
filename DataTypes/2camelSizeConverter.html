@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //by applying logic and array-methods
+        function camelSize1(str) {
+            let strArr = str.split("");
+            let capitalCaseStatus = false;
+            for (let i = 0; i < strArr.length; i++) {
+                if(capitalCaseStatus) {
+                    strArr[i] = strArr[i].toUpperCase();
+                    capitalCaseStatus = false;
+                }
+                if(strArr[i]=== "-") {
+                    strArr[i] = "";
+                    capitalCaseStatus = true;
+                }
+            }
+            console.log(strArr.join(""));
+        }
+        // camelSize1("-webkit-transition")
+
+                //by applying only array-methods
+        function camelSize2(str) {
+            return str
+            .split("-") //make array of words by seprating from dash in given str // ['','webkit', 'transition']
+            .map( //convert first char of each word to uppercase except 1st word and return new array
+                (word, index) => index===0 ? word : word[0].toUpperCase() + word.slice(1)
+            )
+            .join(""); //join ele of arr with no gap
+        }
+        // console.log(camelSize2("-webkit-transition"))
+
+        let arr = ['a', "b"];
+        console.log(arr);
+        let arr2 = arr.map((item, index)=>item.toUpperCase());
+        console.log(arr);
+        //map return new array after some operation on each ele of given array
+    </script>
+</body>
+</html>

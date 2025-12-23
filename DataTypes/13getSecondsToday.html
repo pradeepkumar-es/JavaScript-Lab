@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //Approach 1: using setting time to 00:00:00 of today
+      function main() {
+        let midNightTime = new Date().setHours(0, 0, 0, 0);
+        return (new Date() - midNightTime) / 1000;
+      }
+      console.log(main());
+
+      //Approach 2: by creating today's date that will have time default of 00:00:00
+      function main2() {
+        let now  = new Date();
+        let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        let diff = now - today //ms
+        return diff / 1000;
+      }
+      console.log(main2());
+
+      //Approach 3 : convert current hours, min to seconds and add all seconds
+    </script>
+  </body>
+</html>
