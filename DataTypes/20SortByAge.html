@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function main(arr) {
+        arr.sort((a, b) => a.age - b.age)
+        return arr;
+      }
+      let john = { name: "John", age: 25 };
+      let pete = { name: "Pete", age: 30 };
+      let mary = { name: "Mary", age: 28 };
+
+      let arr = [pete, john, mary];
+      console.log(main(arr));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function main(arr) {
+        // Fisher-Yates shuffle algorithm
+        for (let i = arr.length - 1; i > 0; i--) {
+            let j = Math.floor( Math.random() * (i+1) ); //random index from 0 to n
+            [arr[i], arr[j]] = [arr[j], arr[i]]; //swap
+        }
+        return arr;
+        }
+        let arr = [1, 2, 3];
+        console.log(main(arr));
+    </script>
+</body>
+</html>

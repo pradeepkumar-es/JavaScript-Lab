@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function main(strings) {
+        //basic way: good for only small arr
+        //T.C. O(n^2)
+        let res = [];
+        for(let str of strings) {
+            if(!res.includes(str)) {
+                res.push(str);
+            }
+        }
+        // return res;
+
+        //optimized way
+        //T.C O(n)
+        let set = new Set();
+        strings.forEach(item => set.add(item))
+        return Array.from(set);
+      }
+      let strings = [
+        "Hare",
+        "Krishna",
+        "Hare",
+        "Krishna",
+        "Krishna",
+        "Krishna",
+        "Hare",
+        "Hare",
+        ":-O",
+      ];
+      console.log(main(strings));
+    </script>
+  </body>
+</html>

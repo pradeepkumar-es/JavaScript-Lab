@@ -1,20 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        function Calculator() {
-            this.calculate(str){
-
-            }
+      function Calculator() {
+        this.methods = {
+            "+" : (a, b) => a+b,
+            "-" : (a, b) => a-b,
         }
-        let calc = new Calculator();
-        calc.calculate("3 + 7")
-        console.log(main());
+        this.calculate = function (str) {
+          let strArr = str.split(" "); //['3', '+', '7']
+        //   if (strArr[1] == "+") {
+        //     return Number(strArr[0]) + Number(strArr[2]);
+        //   } 
+        //   if(strArr[1] == '-'){
+        //     return Number(strArr[0]) - Number(strArr[2]);
+        //   }
+        //   return this.addMethod(strArr[1], )
+
+          let num1 = +strArr[0];
+          let op = strArr[1];
+          let num2 = +strArr[2];
+          if(isNaN(num1) || isNaN(num2) || !this.methods[op]) {
+            return NaN;
+          }
+          return this.methods[op](num1, num2);
+        };
+        this.addMethod = function (name, func) {
+            this.methods[name] = func; //set new operation to methods
+        };
+      }
+      //part 1
+      let calc = new Calculator();
+      let res = calc.calculate("3 + 7");
+      console.log(res);
+
+      //Part 2
+      let powerCalc = new Calculator();
+      powerCalc.addMethod("*", (a, b) => a * b);
+      powerCalc.addMethod("/", (a, b) => a / b);
+      powerCalc.addMethod("**", (a, b) => a ** b);
+
+      let result = powerCalc.calculate("2 ** 3");
+      console.log(result);
     </script>
-</body>
+  </body>
 </html>
