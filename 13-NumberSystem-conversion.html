@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //https://codedamn.com/problem/-2PLJmKK2mJX4KhdQKsL5?challenge-list=50-days-of-js
+        //Approach: 1st have to convert digits into decimal then into give base digits array
+        function main(digits, baseA, baseB) {
+            //using built in methods
+            let res = [];
+            // let dec= parseInt(digits.join("")); //using built in methods for converting into decimal
+            
+            //using manual way of converting into decimal
+            let dec = 0;
+            let n = digits.length;
+            for (let i = n-1; i >= 0; i--) {
+                dec += (digits[n-1-i] * Math.pow(baseA, i));
+            }
+            //conversion of decimal to given base
+            //we can also use to convert dec to anybase number system using dec.toString("numString", base), it given single value
+            while((dec / baseB) !== 0) {
+                let rem = dec % baseB;
+                res.unshift(rem);
+                dec = Math.floor(dec / baseB);
+            }
+            return res;
+        }
+        console.log(main([5, 8], 10, 16)); //[3, 10]
+    </script>
+</body>
+</html>

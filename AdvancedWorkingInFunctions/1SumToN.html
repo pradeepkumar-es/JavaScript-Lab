@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1. using for loop
+        function main(n) {
+            let sum = 0;
+            for (let i = 1; i <= n; i++) {
+                sum += i;
+            }
+            return sum;
+        }
+        console.log(main(100000));
+
+        //using Recursion
+        function main2(n) {
+            if (n == 1) {
+                return 1;
+            }
+            return n + main2(n-1);
+        }
+        console.log(main2(100));
+        // console.log(main2(100000)); //callstak exceeded
+
+        //using Arthmatic Progression Formula
+        function main3(n) {
+            return (n/2) * (1 + n); // n/2 (a+l) or n/2 (2a+(n-1)d)
+        }
+        console.log(main3(100000));
+
+        //formula variant is fastest solution because it takes only 3 operation for any nuber n TC O(1)  
+        //second fastest is loop 
+        //slowest is Recursion bcz here nested call happening and extra resources is used for call stack managed
+        //recursion can not count upto 100000 bcz of the size limit of call stack;
+          </script>
+</body>
+</html>
