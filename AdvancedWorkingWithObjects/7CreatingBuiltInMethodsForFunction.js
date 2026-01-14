@@ -14,5 +14,6 @@ function f() {
 }
 Function.prototype.defer = function(ms){ //adding methods in prototype of Function constructor
     setTimeout(f, ms);
+    // setTimeout(this,ms); //also work, this represent f
 }
 f.defer(1000); // shows "Hello!" after 1 second
