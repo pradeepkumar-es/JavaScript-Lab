@@ -40,7 +40,7 @@ class Rabbit extends Animal {
 }
 
 let rabbit = new Rabbit("White Rabbit"); // Error: this is not defined when super is not called in derived constructor, and after adding result will be White Rabbit
-alert(rabbit.name);
+alert(rabbit.name); //White Rabbit
 /*
 we must call super in derived constructor before using this, otherwise parent constructor will not execute
 and object for this won't be created
