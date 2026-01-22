@@ -1,0 +1,34 @@
+/*
+Get the Middle Value
+Chloe is practicing JavaScript, she got a challenge to write a JavaScript Function getMiddleValue() which has a parameter arr should accept an array of numbers and sort the array and return the middle value of the array if length of the array is odd and average of the middle values if the length of the array is even.
+
+She has written her code (which is shared with you in the index.js file), but there seems to a bug which she is unable to figure out. The function doesn't not return the middle number of the array having odd length. Can you help her debug this?
+
+A sample array values are already provided to you to aid you in debugging this. Once you've fixed the bug, run the tests to verify if the bug has been fixed. You have to try to change the as minimal as possible and completely avoid re-writing the code.
+
+All the best!
+*/
+/**
+ * Returns the middle value for a given array if odd and average if even
+ * @param {number[]} arr - Array of Numbers
+ * @returns {number} Middle Value
+ */
+export function getMiddleValue(arr) {
+	arr.sort((a, b) => a - b);
+
+	if (arr.length % 2 === 0) {
+		const mid1 = arr[arr.length / 2 - 1];
+		const mid2 = arr[arr.length / 2];
+		return (mid1 + mid2) / 2;
+	} else {
+		// return arr[Math.floor(arr.length / 2) - 1]; bug 
+		return arr[Math.floor(arr.length / 2)]; //removed -1
+	}
+}
+
+// Sample Test Cases
+const numbers1 = [5, 3, 8, 4, 2];
+const numbers2 = [40, 20, 60, 80, 50, 30];
+
+console.log(getMiddleValue(numbers1)); // Expected Output: 4
+console.log(getMiddleValue(numbers2)); // Expected Output: 45
