@@ -31,7 +31,7 @@ export const findCharacter = (str) => {
 	return null;
 }
 
-//2nd Approach using map method
+//2nd Approach using map
 export const findCharacter = (str) => {
 	// Write your code here
 	//using plain object
