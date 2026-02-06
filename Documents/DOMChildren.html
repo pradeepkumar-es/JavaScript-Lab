@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--
+    For each of the following, give at least one way of how to access them:
+    The <div> DOM node?
+    The <ul> DOM node?
+    The second <li> (with Pete)?
+    -->
+</head>
+<body>
+    <div>Users:</div>
+  <ul>
+    <li>John</li>
+    <li>Pete</li>
+  </ul>
+  <script>
+    // let divDOMNode = document.body.childNodes[1]; //1st way: childreNodes give collection of childnodes including both text and element nodes, here 1st node is space which is text node, so we take 2nd which is div element node
+    // let divDOMNode = document.body.children[0]; //2nd way: children will give only those child nodes that are element nodes
+    let divDOMNode = document.body.firstElementChild; //3rd way
+    console.log(divDOMNode);
+
+    // let ulDOMNode = document.body.children[1]; //it will give 2nd child element nodes ul
+    // let ulDOMNode = document.body.childNodes[3]; //it will give 4th child element element ul, here 1st node in text node (new line and space), 2nd node is div, and 3rd is again text node 
+    console.log(ulDOMNode);
+
+    // let liDOMNode = document.body.children[1].lastElementChild;
+    let liDOMNode = document.body.children[1].childNodes[3];
+    console.log(liDOMNode);
+  </script>
+</body>
+</html>
