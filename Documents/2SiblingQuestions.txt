@@ -1,0 +1,10 @@
+
+If elem – is an arbitrary DOM element node…
+Is it true that elem.lastChild.nextSibling is always null?
+Is it true that elem.children[0].previousSibling is always null?
+//ans
+1. yes, elem.lastChild.nextSibling give null, because lastChild give last child node hence it's nextSibling will be null
+2. No, in elem.children[0].previousSibling children[0] give 1st child among elements, but there can be text node like space or new line also
+in this case .previousSibling will give text node not null,
+
+  //note: if there is no child then both will give error, because lastChild and children[0] will be null and accessing it's sibling will be error
