@@ -74,6 +74,14 @@ Open the page table.html in a separate window and make use of browser tools for 
       //The form with name="search".
       let searchEle = document.getElementsByName("search");
       console.log(searchEle);
+
+      //The first input in that form.
+      let firstInput = document.getElementsByTagName("input")[0];
+      console.log(firstInput); //<input type="text" name="search">
+
+      //The last input in that form.
+      let lastDoc = document.getElementsByTagName("input");
+      console.log(lastDoc[lastDoc.length-1]); //<input type="submit" value="Search!">
     </script>
   </form>
 </body>
