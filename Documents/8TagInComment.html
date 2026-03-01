@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+  let body = document.body;
+
+  body.innerHTML = "<!--" + body.tagName + "-->";
+
+  alert( body.firstChild.data ); // what's here?
+  //BODY
+  /*explanation:
+  innerHTML set the comment as child node of body, here comment is firstChild and body.tagName 
+  will give tagName (here body) in upperCase in HTMl as BODY, data property of firstChild
+  will give content of comment.
+  */ 
+</script>
+</body>
+</html>
