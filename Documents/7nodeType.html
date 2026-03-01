@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    alert(document.body.lastChild.nodeType); //1 => element node
+    //at the time script execution, last DOM node will be exactly  <script>, rest of the page is not processed by browser
+     alert(document.body.firstChild.nodeType); //3 => text node
+     //explanation: browser treat whitespaces(spaces, tabs, newlines) as text node (text nodes are visible things)
+</script>
+</body>
+</html>

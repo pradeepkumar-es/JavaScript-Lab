@@ -58,10 +58,10 @@ The number of nested <li> – all descendants, including the deeply nested ones.
     for(let childEle of ulChildEle){
         console.log(childEle.firstElementChild)
         childEle.firstElementChild.hidden = true;
-    }
 
-    //number of li elements
-    console.log(document.getElementsByTagName("li").length) //16
+         //number of descents li elements
+    console.log(childEle.getElementsByTagName("li").length) //9 then 5
+    }
   </script>
 </body>
 </html>
