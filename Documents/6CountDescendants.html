@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--
+    Count descendants
+importance: 5
+There’s a tree structured as nested ul/li.
+
+Write the code that for each <li> shows:
+
+What’s the text inside it (without the subtree)
+The number of nested <li> – all descendants, including the deeply nested ones.
+    -->
+</head>
+<body>
+    <ul>
+    <li>Animals
+      <ul>
+        <li>Mammals
+          <ul>
+            <li>Cows</li>
+            <li>Donkeys</li>
+            <li>Dogs</li>
+            <li>Tigers</li>
+          </ul>
+        </li>
+        <li>Other
+          <ul>
+            <li>Snakes</li>
+            <li>Birds</li>
+            <li>Lizards</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>Fishes
+      <ul>
+        <li>Aquarium
+          <ul>
+            <li>Guppy</li>
+            <li>Angelfish</li>
+          </ul>
+        </li>
+        <li>Sea
+          <ul>
+            <li>Sea trout</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <script>
+    let ulChildEle = document.querySelector("ul").children;
+    console.log(ulChildEle); //[li li]
+    for(let childEle of ulChildEle){
+        console.log(childEle.firstElementChild)
+        childEle.firstElementChild.hidden = true;
+    }
+
+    //number of li elements
+    console.log(document.getElementsByTagName("li").length) //16
+  </script>
+</body>
+</html>
