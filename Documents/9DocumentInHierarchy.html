@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        Where's the "document" in the hierarchy?
+importance: 4
+Which class does the document belong to?
+
+What’s its place in the DOM hierarchy?
+
+Does it inherit from Node or Element, or maybe HTMLElement?
+        */
+       //Which class does the document belong to?
+       alert(document); //[object HTMLDocument] //HTMLDocument class
+       //or
+       console.log(document.constructor.name) //HTMLDocument //this is class name
+
+       //What’s its place in the DOM hierarchy?
+       //as we know that methods of classes are in the prototype of the constructor
+       console.log(HTMLDocument.prototype.constructor.name);// HTMLDocument
+       console.log(HTMLDocument.prototype.__proto__.constructor.name); //Document
+       console.log(HTMLDocument.prototype.__proto__.__proto__.constructor.name);//Node
+
+       //Does it inherit from Node or Element, or maybe HTMLElement?
+       //it get inherited by node
+    </script>
+</body>
+</html>
