@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+    createTextNode vs innerHTML vs textContent
+importance: 5
+We have an empty DOM element elem and a string text.
+
+Which of these 3 commands will do exactly the same?
+
+elem.append(document.createTextNode(text))
+elem.innerHTML = text
+elem.textContent = text
+    -->
+<script>
+    // ans 1st and last
+    //explanation 
+    /*
+    1st will append text node inside html ele node
+    2nd will modify whole html ele node with text only //so in this only text will avaialable 
+    3rd will insert text only inside html ele node
+    */
+</script>
+</body>
+</html>
