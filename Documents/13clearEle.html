@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Create a function clear(elem) that removes everything from the element. -->
+
+<ol id="elem">
+  <li>Hello</li>
+  <li>World</li>
+</ol>
+
+<script>
+  function clear(elem) {
+     /* your code */
+     console.log(elem.children) // [li, li];
+     /* this code will not work because elem.children will give live HTML collection
+     after removing first element children HTML collection will get updated automatically as [li], so next
+     iteration at index at 1 will not exist and loop get exist without comple removing
+     for(let liEle of elem.children){
+        liEle.remove();
+     }
+        */
+
+             //so solution will be either convert live collection into static collection or remove always first child
+     //solution 1: converting into static
+     /*
+     let elems = [...elem.children]; //static collection
+     for(let ele of elems){
+        ele.remove();
+     }
+        */
+
+        //solution 2: remove always first child
+        while(elem.firstChild){ 
+            elem.firstChild.remove();
+        }
+
+     }
+
+  clear(elem); // clears the list
+</script>
+</body>
+</html>
