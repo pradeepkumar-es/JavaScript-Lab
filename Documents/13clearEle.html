@@ -35,10 +35,14 @@
         */
 
         //solution 2: remove always first child
+        /*
         while(elem.firstChild){ 
             elem.firstChild.remove();
         }
+         */
 
+         //solution 3: replace innerHTML with empty string
+         elem.innerHTML = "";
      }
 
   clear(elem); // clears the list
