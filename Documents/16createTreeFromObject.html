@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--
+    Create a tree from the object
+importance: 5
+Write a function createTree that creates a nested ul/li list from the nested object.
+
+For instance:
+
+let data = {
+  "Fish": {
+    "trout": {},
+    "salmon": {}
+  },
+
+  "Tree": {
+    "Huge": {
+      "sequoia": {},
+      "oak": {}
+    },
+    "Flowering": {
+      "apple tree": {},
+      "magnolia": {}
+    }
+  }
+};
+The syntax:
+
+let container = document.getElementById('container');
+createTree(container, data); // creates the tree in the container
+The result (tree) should look like this:
+Fish
+ trout
+ salmon
+Tree
+ Huge
+  sequoia
+  oak
+ Flowering
+  apple tree
+  magnolia
+
+Choose one of two ways of solving this task:
+
+Create the HTML for the tree and then assign to container.innerHTML.
+Create tree nodes and append with DOM methods.
+Would be great if you could do both.
+
+P.S. The tree should not have “extra” elements like empty <ul></ul> for the leaves.
+    -->
+
+    <div id="tree"></div>
+
+    <!-- The result should be:
+<div id="tree">
+<ul>
+  <li>Fish
+    <ul>
+      <li>trout</li>
+      <li>salmon</li>
+    </ul>
+  </li>
+  <li>Trees
+    <ul>
+      <li>Huge
+        <ul>
+          <li>sequoia</li>
+          <li>oak</li>
+        </ul>
+      </li>
+      <li>Flowering
+        <ul>
+          <li>apple tree</li>
+          <li>magnolia</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+-->
+
+    <script>
+      let data = {
+        Fish: {
+          trout: {},
+          salmon: {},
+        },
+
+        Tree: {
+          Huge: {
+            sequoia: {},
+            oak: {},
+          },
+          Flowering: {
+            "apple tree": {},
+            magnolia: {},
+          },
+        },
+      };
+
+      function createTree(container, data) {
+        /* your code */
+        let keys = Object.keys(data);
+        if (keys.length == 0) {
+          return;
+        }
+
+        let ulEle = document.createElement("ul");
+        container.append(ulEle);
+
+        for (let key of keys) {
+          let liEle = document.createElement("li");
+          liEle.textContent = key;
+          ulEle.append(liEle);
+          /*
+          console.log(Object.keys(key).length);
+          if (Object.keys(key).length > 0) {
+            //for nested object
+            return createTree(liEle, key);
+          } else {
+            continue;
+          }
+            //above lines has bug for the solutions
+            in this loop key is string ex.'Fish' not the object so in Object.keys(key), key string will be treated
+            as array of character and .length will give 4 and it always will begreater than 0, so loop will never end.
+            createTree function need key as object not key as string so we need to do this like createTree(liEle, data[key]),
+            this will work like
+ data["Fish"] = {
+  trout: {},
+  salmon: {}
+} 
+  and also there will no return bcz it will stop the loop after 1st element.
+            */
+
+            //corrected code //recursion for nested object
+            if(Object.keys(data[key]).length){
+              createTree(liEle, data[key]); //always use square bracket for dynamic info like key which is changing in every loop
+           //here liEle is passed in recursion instead of container, because when we have container every nested data will be created on the top of container 
+           // so no hierarchichal visual but will liEle as container, it will always create nested ul inside nested li which causes it to show like hierarchichal
+            }
+        }
+      }
+
+      createTree(document.getElementById("tree"), data);
+    </script>
+  </body>
+</html>
