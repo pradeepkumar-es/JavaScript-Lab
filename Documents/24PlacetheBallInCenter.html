@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <style>
+    #field {
+      width: 200px;
+      border: 10px groove black;
+      background-color: #00FF00;
+      position: relative;
+    }
+
+    #ball {
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+<!--
+  
+Place the ball in the field center
+importance: 5
+Here’s how the source document looks:
+
+
+What are coordinates of the field center?
+
+Calculate them and use to place the ball into the center of the green field:
+
+
+The element should be moved by JavaScript, not CSS.
+The code should work with any ball size (10, 20, 30 pixels) and any field size, not be bound to the given values.
+P.S. Sure, centering could be done with CSS, but here we want exactly JavaScript. Further we’ll meet other topics and more complex situations when JavaScript must be used. Here we do a “warm-up”.
+-->
+
+  <div id="field">
+    <img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+<script>
+  /*
+  ball has position: absolute hence its center co-ordinates will be calculated from left-top corner 
+  of nearest ancestor element which is field element which has position relative
+  */
+ //calcualation of field center co-ordinates
+ let xAxis = Math.round(field.clientWidth/2);
+ let yAxis = Math.round(field.clientHeight/2);
+ console.log(xAxis+", "+yAxis); //100, 63
+
+ //positioning ball in the center of the field
+ /*we need to set height and width of ball othewise offsetWidth/ offsetHeight of the ball will be 0 on 1st loads of image
+ 
+ we are also subtracting half of the offsetWidth/offsetHeight from
+ xAxis & yAxis before setting left/top style to centeral axis of the filed
+ of ball for ball get centered as whole not its left-top corner of tha ball*/
+ ball.style.width = "40px";
+ ball.style.height = "40px";
+
+ //centring the ball in the field
+ ball.style.left = (xAxis - Math.round(ball.offsetWidth/2)) + 'px';
+ ball.style.top = (yAxis - Math.round(ball.offsetHeight/2)) + 'px';
+</script>
+
+</body>
+
+</html>
