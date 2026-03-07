@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+    What's the scroll from the bottom?
+importance: 5
+The elem.scrollTop property is the size of the scrolled out part from the top. How to get the size of the bottom scroll (let’s call it scrollBottom)?
+
+Write the code that works for an arbitrary elem.
+
+P.S. Please check your code: if there’s no scroll or the element is fully scrolled down, then it should return 0.
+    -->
+<div style="width:250px; height:200px; background-color: blueviolet;">
+    <div id="elem" style = "width:200px; background-color:yellow; overflow:auto"  >
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi dicta illo repellendus veniam quae! Recusandae tempore voluptatem dolores ab quia delectus nostrum laboriosam dicta accusamus maxime molestiae nisi illo quis debitis, incidunt libero. Minima quisquam cum quod eligendi veritatis iure itaque distinctio! In dolores beatae magni modi harum nesciunt aperiam adipisci officiis ullam, inventore quaerat. Cum praesentium inventore corrupti harum, aliquam repellendus facere nihil! Alias ab voluptates optio numquam eaque in placeat aperiam, fuga vel at minima mollitia praesentium! Exercitationem voluptatem debitis quasi, quas, a aliquam vitae est explicabo id tempora illum corrupti vero distinctio ratione ducimus sunt nihil aspernatur.
+</div>
+</div>
+<script>
+    elem.style.height = "240px";
+    // elem.style.boxSizing = "border-box"
+    //scrollBottom (hidden scrollable content from bottom) will be scrollHeight(total scrollable height ) - scrollTop(scrollable hidden content from top) - clientHeight(visible area ->content + padding)
+    let scrollBottom = elem.scrollHeight - elem.scrollTop - elem.clientHeight;
+    console.log(scrollBottom);
+</script>
+</body>
+</html>
