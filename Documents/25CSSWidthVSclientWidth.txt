@@ -1,0 +1,11 @@
+The difference: CSS width versus clientWidth
+importance: 5
+What’s the difference between getComputedStyle(elem).width and elem.clientWidth?
+
+Give at least 3 differences. The more the better.
+
+1. clientWidth includes contet width + padding but css width includes content only
+2. clientWidth is DOM property used in js but getComputedStyle(elem).width is css calcualted width accessed through js
+3. when getComputedStyle return numeric value, it always return with px in the end but clientWidth always return numeric value.
+4. getComputedStyle can return non-numeric value also like auto (when elem is inline element), but clientWidth will always return numeric value;
+5. clientwidth get reduced when there is scrollbar because it take space, but css width remain same
