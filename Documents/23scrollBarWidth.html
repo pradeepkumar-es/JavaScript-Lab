@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+    What is the scrollbar width?
+importance: 3
+Write the code that returns the width of a standard scrollbar.
+
+For Windows it usually varies between 12px and 20px. If the browser doesn’t reserve any space for it (the scrollbar is half-translucent over the text, also happens), then it may be 0px.
+
+P.S. The code should work for any HTML document, do not depend on its content.
+    -->
+<div id="elem">
+Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt vel, exercitationem suscipit sequi tempore labore ipsa aspernatur. Libero perspiciatis quam magnam harum porro. Voluptatem fugit amet fugiat iure repellat doloribus esse officiis enim reiciendis sunt, eaque alias aperiam aliquid nulla qui inventore? Debitis itaque hic impedit quisquam eligendi odit alias!
+</div>
+<script>
+    //setting padding and border 0px so that scroll width = offset-width - client width
+    elem.style.border = "0px";
+    elem.style.padding = "0px";
+    elem.style.width = "50px";
+    elem.style.height = "50px";
+    elem.style.overflowY = "scroll";
+    elem.style.backgroundColor = "yellow"
+    let scrollbarWidth = elem.offsetWidth - elem.clientWidth; 
+    console.log(scrollbarWidth);
+</script>
+</body>
+</html>
