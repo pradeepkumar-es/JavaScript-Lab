@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+<!--
+Hide on click
+importance: 5
+Add JavaScript to the button to make <div id="text"> disappear when we click it.    
+-->
+  <input type="button" id="hider" value="Click to hide the text" />
+
+  <div id="text">Text</div>
+
+  <script>
+    /* your code */
+    //1st way: using addEventListener
+    //     function hideText(){
+    //     text.style.display = "none";
+    // }
+    // hider.addEventListener('click', hideText);
+
+    //2nd way usig DOM properties
+    hider.onclick = function(){
+        // text.hidden = true; //using attribute
+        text.style.display = "none" //using style property
+    }
+
+    //3rd way: we cn use onclick attribute and write handler function as string
+  </script>
+
+</body>
+</html>
