@@ -11,6 +11,9 @@
             background-color: #00FF00;
             overflow: hidden;
         }
+        #ball{
+            transition: 1s all;
+        }
     </style>
 </head>
 
@@ -36,7 +39,7 @@ Use properties event.clientX/event.clientY for click coordinates.
     <br> The ball should never leave the field.
 
 
-    <div id="field" style="width: 200px; height: 150px;">
+    <div id="field">
         <img src="https://en.js.cx/clipart/ball.svg" id="ball" style="width: 45px; height:45px"> . . . . . . . . . . . .
         . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
         . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
@@ -50,7 +53,7 @@ Use properties event.clientX/event.clientY for click coordinates.
         function moveBall(event) {
             let xCoor = event.clientX; //relative to window
             let yCoor = event.clientY; //relative to window
-            console.log(xCoor, yCoor);
+            // console.log(xCoor, yCoor);
 
             /*to make ball always inside boundary of field we need to make co-ordinates
             of click relative to field
@@ -63,13 +66,20 @@ Use properties event.clientX/event.clientY for click coordinates.
             let fieldDetail = field.getBoundingClientRect()
             let leftRelativeCoor = xCoor - fieldDetail.left - field.clientLeft - (ball.offsetWidth / 2);
             let topRelativeCoor = yCoor - fieldDetail.top - field.clientTop - (ball.offsetHeight / 2);
-
-            if(leftRelativeCoor < 0){
+            let maxLeft = field.clientWidth - ball.offsetWidth; //max allowable left relative co-ordinate for ball edge insde field
+            let maxTop = field.clientHeight - ball.offsetHeight; //max allowable top relative co-ordinate ,, ,,
+            if(leftRelativeCoor < 0){ //for keeping ball edge inside field
                 ball.style.left = "0px";
+            }else if(leftRelativeCoor > maxLeft){
+                ball.style.left = `${maxLeft}px`;
             }else{
                 ball.style.left = `${leftRelativeCoor}px`
             }
             if(topRelativeCoor < 0){
+                ball.style.top = "0px";
+            }else if(topRelativeCoor >maxTop){
+                ball.style.top = `${maxTop}px`;
+            }else{
                 ball.style.top = `${topRelativeCoor}px`;
             }
 
