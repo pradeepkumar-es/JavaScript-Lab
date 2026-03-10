@@ -1,7 +1,8 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 </head>
 <!--
 Create a sliding menu
@@ -9,35 +10,69 @@ importance: 5
 Create a menu that opens/collapses on click:
 P.S. HTML/CSS of the source document is to be modified.
 -->
-<body>
-    <div id="menu">
-        <span>▶Sweeties (click me)!</span>
-    </div>
-  <ul>
-    <li>Cake</li>
-    <li>Donut</li>
-    <li>Honey</li>
-  </ul>
-<script>
-
-    //using javascript only
-    let ele = document.getElementsByTagName('span')[0]; 
-    ele.style.cursor = "pointer";  
-    let ulEle = document.getElementsByTagName('ul')[0];
-    let openStatus = true;
-    // console.log(ulEle);
-    ele.addEventListener('click', createMenu);
-    function createMenu(event){
-        if(openStatus){
-            ulEle.hidden = true;
-            ele.textContent = "▼ Sweeties (click me)!"
-            openStatus = !openStatus;
-        }else{
-            ulEle.hidden = false;
-            ele.textContent = "▶ Sweeties (click me)!"
-            openStatus = !openStatus;
-        }
+<style>
+    .menu .title{
+        cursor: pointer;
     }
-</script>
+    .menu ul{
+        display: none;
+    }
+.menu .title::before{
+    content: "▶";
+    color:rgb(0,128,0);
+}
+
+.menu.open .title::before{
+    content: "▼";
+    color:rgb(0,128,0);
+}
+.menu.open  ul{
+    display: block;
+}
+</style>
+<body>
+    <div class="menu">
+         <!--for js sol only-->
+        <!-- <span class="title">▶Sweeties (click me)!</span> -->
+
+        <!-- for js and css sol both -->
+        <span class="title">Sweeties (click me)!</span>
+        <ul>
+            <li>Cake</li>
+            <li>Donut</li>
+            <li>Honey</li>
+        </ul>
+    </div>
+    <script>
+
+        //using javascript only
+        /*
+        let ele = document.getElementsByTagName('span')[0];
+        ele.style.cursor = "pointer";
+        let ulEle = document.getElementsByTagName('ul')[0];
+        let openStatus = true;
+        // console.log(ulEle);
+        ele.addEventListener('click', createMenu);
+        function createMenu(event){
+            if(openStatus){
+                ulEle.hidden = true;
+                ele.textContent = "▼ Sweeties (click me)!"
+                openStatus = !openStatus;
+            }else{
+                ulEle.hidden = false;
+                ele.textContent = "▶ Sweeties (click me)!"
+                openStatus = !openStatus;
+            }
+        }
+        */
+
+        //using js and css
+        let titleEle = document.querySelector('.title');
+        let menuEle = document.querySelector('.menu');
+        titleEle.onclick = function(event){
+            menuEle.classList.toggle('open');
+        }
+    </script>
 </body>
+
 </html>
