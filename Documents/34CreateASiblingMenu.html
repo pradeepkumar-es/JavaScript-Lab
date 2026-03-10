@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<!--
+Create a sliding menu
+importance: 5
+Create a menu that opens/collapses on click:
+P.S. HTML/CSS of the source document is to be modified.
+-->
+<body>
+    <div id="menu">
+        <span>▶Sweeties (click me)!</span>
+    </div>
+  <ul>
+    <li>Cake</li>
+    <li>Donut</li>
+    <li>Honey</li>
+  </ul>
+<script>
+
+    //using javascript only
+    let ele = document.getElementsByTagName('span')[0]; 
+    ele.style.cursor = "pointer";  
+    let ulEle = document.getElementsByTagName('ul')[0];
+    let openStatus = true;
+    // console.log(ulEle);
+    ele.addEventListener('click', createMenu);
+    function createMenu(event){
+        if(openStatus){
+            ulEle.hidden = true;
+            ele.textContent = "▼ Sweeties (click me)!"
+            openStatus = !openStatus;
+        }else{
+            ulEle.hidden = false;
+            ele.textContent = "▶ Sweeties (click me)!"
+            openStatus = !openStatus;
+        }
+    }
+</script>
+</body>
+</html>
