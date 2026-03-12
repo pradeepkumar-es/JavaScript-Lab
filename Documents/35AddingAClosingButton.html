@@ -69,11 +69,20 @@ p {
     </div>
   </div>
 <script>
+  /* appending already existing element again again will remove from previous and only inserted to last inserted element, wee need to create new button for each h3Ele
     let closeButton = document.querySelector('.remove-button');
     let h3Eles = document.getElementsByTagName('h3');
     for(let ele of h3Eles ){
         ele.append(closeButton);
     }
+    */
+   let h3Eles = document.getElementsByTagName('h3');
+   for(let ele of h3Eles){
+    let btn = document.createElement('button');
+    btn.innerText = "[X]";
+    btn.className = "remove-button";
+    ele.append(btn);
+   }
 </script>
 </body>
 </html>
