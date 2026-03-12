@@ -35,6 +35,7 @@ p {
   background: #edf5e1;
   padding: 10px 20px 10px;
   border-top: solid 2px #c4df9b;
+  position: relative;
 }
 
 .remove-button {
@@ -46,6 +47,8 @@ p {
   border: none;
   background: transparent;
   cursor: pointer;
+  position:absolute;
+  float: right;
 }
 </style>
 <body>
@@ -82,6 +85,16 @@ p {
     btn.innerText = "[X]";
     btn.className = "remove-button";
     ele.append(btn);
+
+    //remove respective pane on btn click
+    btn.onclick = function(event){
+      console.log("parentNode: "+ele.parentNode, "parentElementNode: "+ ele.parentElement);
+      ele.parentElement.hidden = true; //temporarely removing, stil exist in DOM,  take no space, can be shown  again by changing value by false
+      
+
+      //2nd method: to remove permanently, removed from DOM, take no space, can not be shown again , we need to recreate it to do so
+      ele.parentElement.remove();
+    }
    }
 </script>
 </body>
