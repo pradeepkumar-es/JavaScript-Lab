@@ -4,8 +4,22 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="style.css">
   <style>
-    
-    .arrow {
+    .carousel{
+      position: relative;
+      width: 400px;
+      background-color: #b1b1b1;
+      border: 1px solid black;
+      margin: auto;
+      height: 130px;
+      padding: 10px 40px;
+      border-radius: 10px;
+    }
+    .gallery{
+      position: absolute;
+      width: 390px; /*only 3 image length (3*130)px visible*/
+      overflow: hidden; /*only allow fixed width visible*/
+    }
+  .arrow {
   padding: 0;
   background: #ddd;
   border-radius: 15px;
@@ -14,22 +28,16 @@
   line-height: 24px;
   color: #444;
   display: block;
-  /* added code */
   position: absolute;
-}
-#left{
-    left: 440px;
-    top: 50px;
-}
-#right{
-    right: 450px;
-    top: 50px;
-}
-/* added code */
-body{
-    position: relative;
+  top: 60px;
 }
 
+.prev{
+  left: 7px;
+}
+.next{
+  right: 7px;
+}
 .arrow:focus {
   outline: none;
 }
@@ -41,17 +49,12 @@ body{
 
 ul {
   height: 130px;
-  width: 400px; /* from 9999px*/
-  overflow: hidden;
+  width: 9999px;
   margin: 0;
   padding: 0;
   list-style: none;
   font-size: 0;
-  /* added code */
-  display: flex;
-  flex-direction: row;
-  margin: auto; /*centering carousel*/
-  /* position: absolute; */
+  transition: margin-left 250ms;
 }
 
 ul img {
@@ -61,7 +64,7 @@ ul img {
 }
 
 ul li {
-  display: inline-block; /* removes extra space between list items */
+  display: inline-block; /* removes extra space between list items*/
 }
   </style>
 </head>
@@ -79,10 +82,9 @@ P.S. For this task HTML/CSS structure is actually 90% of the solution.
 -->
   <!-- create your markup and styles -->
 
-  <button class="arrow" id="left">⇦</button>
-  <button class="arrow" id="right">⇨</button>
-
-
+<div class="carousel" id="carousel">
+    <button class="arrow prev">⇦</button>
+  <div class="gallery">
   <ul>
     <li><img src="https://en.js.cx/carousel/1.png"></li>
     <li><img src="https://en.js.cx/carousel/2.png"></li>
@@ -95,8 +97,9 @@ P.S. For this task HTML/CSS structure is actually 90% of the solution.
     <li><img src="https://en.js.cx/carousel/9.png"></li>
     <li><img src="https://en.js.cx/carousel/10.png"></li>
   </ul>
-
-
+  </div>
+  <button class="arrow next">⇨</button>
+</div>
   <script>
     // label the images to visually track them, just for convenience,
     // this code can be removed
@@ -108,13 +111,23 @@ P.S. For this task HTML/CSS structure is actually 90% of the solution.
     // }
 
     // ...your code to make carousel alive!
+    let imgWidth = 130; //width of single image
+    let count = 3; //number of image to show
+    let liEles  = document.querySelectorAll('li');
+    let ulEle = document.querySelector('ul');
+    let position = 0;
 
-    document.getElementById("left").onclick = function(event){
-        alert("left")
-    }
-    document.getElementById("right").onclick = function(event){
-        alert("right");
-    }
+    document.querySelector('.prev').addEventListener('click', function(event){
+      position += imgWidth*count; //increase of marginLeft from -ve marginleft to +ive to scroll right but till 0, so that 1st image don't get hide when images from left finishes
+      position = Math.min(position, 0);
+      ulEle.style.marginLeft = position+"px";
+    })
+
+    document.querySelector('.next').addEventListener('click', function(event){
+      position -= imgWidth*count; // decrease marginLeft in -Ve from so that ul can move in left side but till (ul total length- 3img shown length) to keep last 3 img in display 
+      position = Math.max(position, -imgWidth*(liEles.length - count));
+      ulEle.style.marginLeft = position + "px";
+    })
   </script>
 
 </body>
