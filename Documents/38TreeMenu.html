@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <!--
+Tree menu
+importance: 5
+Create a tree that shows/hides node children on click:
+
+
+Requirements:
+
+Only one event handler (use delegation)
+A click outside the node title (on an empty space) should not do anything.    
+-->
+    <ul class="tree" id="tree">
+        <li data-action="animal">Animals
+            <ul>
+                <li data-action="mammal">Mammals
+                    <ul>
+                        <li>Cows</li>
+                        <li>Donkeys</li>
+                        <li>Dogs</li>
+                        <li>Tigers</li>
+                    </ul>
+                </li>
+                <li data-action="other">Other
+                    <ul>
+                        <li>Snakes</li>
+                        <li>Birds</li>
+                        <li>Lizards</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li data-action="fish">Fishes
+            <ul>
+                <li data-action="aquarium">Aquarium
+                    <ul>
+                        <li>Guppy</li>
+                        <li>Angelfish</li>
+                    </ul>
+                </li>
+                <li data-action="sea">Sea
+                    <ul>
+                        <li>Sea trout</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        class Tree {
+            constructor(elem) {
+                elem.onclick = this.onClick.bind(this) //here bind is used to pass this as class, otherwise this will just current doc elem
+            }
+
+            animalStatus = false;
+            mammalStatus = false;
+            otherStatus = false;
+            fishStatus = false;
+            aquariumStatus = false;
+            seaStatus = false;
+
+            // showHide(childElemArr) {
+            //     childElemArr[0].hidden = !this.animalStatus;
+            //     this.animalStatus = !this.animalStatus;
+            // }
+            animal(elem) {
+                // this.showHide(elem.children);
+                let childElemArr = elem.children;
+                childElemArr[0].hidden = !this.animalStatus;
+                this.animalStatus = !this.animalStatus;
+                // for(let i = 0; i < childElemArr.length; i++){
+                //     childElemArr[i].hidden = !status;
+                //     console.log(childElemArr[i] == childElemArr[childElemArr.length - 1])
+                //     // if(childElemArr[i] == childElemArr[childElemArr.length - 1]){ // if last element, then reverse status to toggle if again clicked
+                //     //     status = !status;
+                //     // }
+                // }
+            }
+            mammal(elem) {
+                // this.showHide(elem.children);
+                let childElemArr = elem.children;
+                childElemArr[0].hidden = !this.mammalStatus;
+                this.mammalStatus = !this.mammalStatus;
+            }
+            other(elem) {
+                // this.showHide(elem.children);
+                let childElemArr = elem.children;
+                childElemArr[0].hidden = !this.otherStatus;
+                this.otherStatus = !this.otherStatus;
+            }
+            fish(elem) {
+                // this.showHide(elem.children);
+                let childElemArr = elem.children;
+                childElemArr[0].hidden = !this.fishStatus;
+                this.fishStatus = !this.fishStatus;
+            }
+            aquarium(elem) {
+                // this.showHide(elem.children);
+                let childElemArr = elem.children;
+                childElemArr[0].hidden = !this.aquariumStatus;
+                this.aquariumStatus = !this.aquariumStatus;
+            }
+            sea(elem) {
+                // this.showHide(elem.children);
+                let childElemArr = elem.children;
+                childElemArr[0].hidden = !this.seaStatus;
+                this.seaStatus = !this.seaStatus;
+            }
+            onClick(event) {
+                let currentHandler = event.target.dataset.action;
+                let curreElem = event.target;
+                if (curreElem.firstElementChild == null) return;
+                this[currentHandler](curreElem);
+            }
+        }
+        // console.log(tree); //we can directly access ele just using id name of element, no need to access using document
+        new Tree(tree)
+    </script>
+</body>
+
+</html>
