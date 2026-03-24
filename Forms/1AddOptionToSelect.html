@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+    Add an option to select
+importance: 5
+There’s a <select>:
+
+<select id="genres">
+  <option value="rock">Rock</option>
+  <option value="blues" selected>Blues</option>
+</select>
+Use JavaScript to:
+
+Show the value and the text of the selected option.
+Add an option: <option value="classic">Classic</option>.
+Make it selected.
+Note, if you’ve done everything right, your alert should show blues.
+    -->
+
+    <select id="genres">
+  <option value="rock">Rock</option>
+  <option value="blues" selected>Blues</option>
+</select>
+<script>
+    //method 1
+    /*
+    let options = genres.options; //its HTMLCollection of type object
+    let arr = Array.from(options) //need to convert into real array for arr method to work
+    console.log( typeof options);
+    let selectedElement = arr.find((option)=>option.selected == true);
+    alert(selectedElement.value); //blues
+
+    let newOption = document.createElement('option');
+    newOption.value = "classic";
+    newOption.textContent = "Classic";
+    newOption.selected = true;
+
+    genres.append(newOption);
+    */
+
+
+    //method 2 //short and simple
+    let selectedElement = genres.options[genres.selectedIndex];
+    alert(selectedElement.value) //blues
+
+    let newOptionElement = new Option("Classic", "classic");
+    newOptionElement.selected = true;
+
+    genres.append(newOptionElement);
+
+</script>
+</body>
+</html>
