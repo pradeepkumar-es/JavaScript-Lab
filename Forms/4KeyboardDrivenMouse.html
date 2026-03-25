@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #mouse {
+      display: inline-block;
+      cursor: pointer;
+      margin: 0;
+    }
+
+    #mouse:focus {
+      outline: 1px dashed black;
+    }
+  </style>
+</head>
+<!--
+    Keyboard-driven mouse
+importance: 4
+Focus on the mouse. Then use arrow keys to move it:
+
+Demo in new window
+
+P.S. Don’t put event handlers anywhere except the #mouse element.
+
+P.P.S. Don’t modify HTML/CSS, the approach should be generic and work with any element.
+-->
+<body>
+
+  <p>Click on the mouse and move it with arrow keys.</p>
+
+  <pre id="mouse">
+ _   _
+(q\_/p)
+ /. .\
+=\_t_/=   __
+ /   \   (
+((   ))   )
+/\) (/\  /
+\  Y  /-'
+ nn^nn
+</pre>
+
+
+  <script>
+    // ...your code...
+    let mouseEle  = document.getElementById("mouse");
+    mouseEle.onclick = function(){
+        // mouseEle.style.position = relative;
+        // mouseEle.style.left = "100px";
+        // alert("hello");
+    }
+  </script>
+
+</body>
+
+</html>
