@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      td select,
+      td input {
+        width: 150px;
+      }
+
+      #diagram td {
+        vertical-align: bottom;
+        text-align: center;
+        padding: 10px;
+      }
+
+      #diagram div {
+        margin: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    Deposit calculator.
+
+    <form name="calculator">
+      <table>
+        <tr>
+          <td>Initial deposit</td>
+          <td>
+            <input name="money" type="number" value="10000" required />
+          </td>
+        </tr>
+        <tr>
+          <td>How many months?</td>
+          <td>
+            <select name="months">
+              <option value="3">3 (minimum)</option>
+              <option value="6">6 (half-year)</option>
+              <option value="12" selected>12 (one year)</option>
+              <option value="18">18 (1.5 years)</option>
+              <option value="24">24 (2 years)</option>
+              <option value="30">30 (2.5 years)</option>
+              <option value="36">36 (3 years)</option>
+              <option value="60">60 (5 years)</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Interest per year?</td>
+          <td>
+            <input name="interest" type="number" value="5" required />
+          </td>
+        </tr>
+      </table>
+    </form>
+
+    <table id="diagram">
+      <tr>
+        <th>Was:</th>
+        <th>Becomes:</th>
+      </tr>
+      <tr>
+        <th id="money-before"></th>
+        <th id="money-after"></th>
+      </tr>
+      <td>
+        <div
+          style="background: red; width: 40px; height: 100px"
+          id="height-before"
+        ></div>
+      </td>
+      <td>
+        <div
+          style="background: green; width: 40px; height: 0"
+          id="height-after"
+        ></div>
+      </td>
+    </table>
+
+    <script>
+      let form = document.forms.calculator;
+      // your code
+      form.addEventListener(
+        'input',
+        // upDateData(iniEle, yearEle, interestEle)
+        // upDateData() //this will run only run once not on every modification
+        upDateData //pass only reference , this way it will run  on every input change
+      );
+      // yearEle.addEventListener(
+      //   'change',
+      //   upDateData(iniEle, yearEle, interestEle)
+      // );
+      // interestEle.addEventListener(
+      //   'change',
+      //   upDateData(iniEle, yearEle, interestEle)
+      // );
+      function upDateData() {
+        let iniEle = document.querySelectorAll('input');
+      // console.log(iniEle);
+      let yearEle = document.getElementsByName('months');
+      let interestEle = document.getElementsByName('interest');
+      // console.log(interestEle[0].value)
+        let initial = iniEle[0].value;
+        // console.log(yearEle)
+        let years = yearEle[0].value / 12;
+        // console.log(years);
+        let interest = interestEle[0].value;
+
+        let result = Math.round(initial * (1 + interest / 100) ** years);
+        console.log(result);
+
+        let wasEle = document.getElementById('money-before');
+        wasEle.textContent = initial;
+        let becomeEle = document.getElementById('money-after');
+        becomeEle.textContent = result;
+
+        let heightAfterBar = document.getElementById('height-after');
+        let heightBeforeBar = document.getElementById('height-before');
+        // console.log(heightBeforeBar.style.height); //it will give with 100px
+        // heightAfterBar.style.height = "120px";
+        // heightAfterBar.style.height =
+        //   (parseInt(heightBeforeBar.style.height) / initial) * result + 'px'; //work only for inline css
+        //using this break the code if CSS changes using style other file
+        //because .style only give inline css
+
+        // working outer css as well
+        let baseHeight = 100;
+          heightAfterBar.style.height =
+          (baseHeight/ initial) * result + 'px';
+      }
+      upDateData() //run on initial load
+    </script>
+  </body>
+</html>
