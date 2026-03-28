@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -46,11 +46,11 @@
       #prompt-form-container:before {
         display: inline-block;
         height: 100%;
-        content: '';
+        content: "";
         vertical-align: middle;
       }
 
-      #prompt-form input[name='text'] {
+      #prompt-form input[name="text"] {
         display: block;
         margin: 5px;
         width: 180px;
@@ -89,40 +89,60 @@ P.S. The source document has HTML/CSS for the form with fixed positioning, but i
     <h1>click The button below</h1>
     <button id="button">click to show the form</button>
     <div id="prompt-form-container">
-      <form id="prompt-form">
+      <form id="prompt-form" onsubmit="return false">
         <div id="prompt-message">Enter something... <br />Please..</div>
         <input name="text" type="text" />
-        <input type="submit" value="Ok" />
+        <input name="submit" type="submit" value="Ok" />
         <input type="button" name="cancel" value="Cancel" />
       </form>
     </div>
     <script>
-      let modal = document.getElementById('prompt-form-container');
-      let modalContent = document.getElementById('prompt-form');
-      let cancelBtn = document.getElementsByName('cancel')[0];
-      let inputField = document.getElementsByName('text')[0];
+      let modal = document.getElementById("prompt-form-container");
+      let modalContent = document.getElementById("prompt-form");
+      let cancelBtn = document.getElementsByName("cancel")[0];
+      let inputField = document.getElementsByName("text")[0];
+      let submitBtn = document.getElementsByName("submit")[0];
       console.log(inputField);
       button.onclick = function (event) {
-        modal.style.display = 'block';
-        inputField.tabIndex = 0; //keep input in focus when form get opened
+        modal.style.display = "block";
+        // inputField.tabIndex = 0; //user can focus using tab only
+        inputField.focus(); // it will move cursor in input , input get activated
       };
       inputField.onchange = function (event) {
-        if (event.key) alert(inputField.value);
+        // alert(inputField.value);
+        submitBtn.onclick = function(){
+          if(inputField.value){
+            showPrompt(inputField.value);
+          }
+        }
+      };
+      window.onkeydown = function (e) {
+        if (e.key == "Enter") {
+          if (inputField.value) {
+            showPrompt(inputField.value);
+          }
+        }
       };
       window.onclick = function (event) {
         if (event.target == cancelBtn) {
-          modal.style.display = 'none';
+          modal.style.display = "none";
           showPrompt(null);
         }
       };
       window.onkeydown = function (event) {
-        if (event.key == 'Escape') {
-          modal.style.display = 'none';
+        if (event.key == "Escape") {
+          modal.style.display = "none";
           showPrompt(null);
         }
       };
+      cancelBtn.onkeydown = function(e){
+        if(e.key == 'Tab'){
+          inputField.focus();
+          return false;
+        }
+      }
       function showPrompt(value) {
-        alert('You Entered: ' + value);
+        alert("You Entered: " + value);
       }
     </script>
   </body>
