@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -46,11 +46,11 @@
       #prompt-form-container:before {
         display: inline-block;
         height: 100%;
-        content: "";
+        content: '';
         vertical-align: middle;
       }
 
-      #prompt-form input[name="text"] {
+      #prompt-form input[name='text'] {
         display: block;
         margin: 5px;
         width: 180px;
@@ -97,27 +97,27 @@ P.S. The source document has HTML/CSS for the form with fixed positioning, but i
       </form>
     </div>
     <script>
-      let modal = document.getElementById("prompt-form-container");
-      let modalContent = document.getElementById("prompt-form");
-      let cancelBtn = document.getElementsByName("cancel")[0];
-      let inputField = document.getElementsByName("text")[0];
-      let submitBtn = document.getElementsByName("submit")[0];
+      let modal = document.getElementById('prompt-form-container');
+      let modalContent = document.getElementById('prompt-form');
+      let cancelBtn = document.getElementsByName('cancel')[0];
+      let inputField = document.getElementsByName('text')[0];
+      let submitBtn = document.getElementsByName('submit')[0];
       console.log(inputField);
       button.onclick = function (event) {
-        modal.style.display = "block";
+        modal.style.display = 'block';
         // inputField.tabIndex = 0; //user can focus using tab only
         inputField.focus(); // it will move cursor in input , input get activated
       };
       inputField.onchange = function (event) {
         // alert(inputField.value);
-        submitBtn.onclick = function(){
-          if(inputField.value){
+        submitBtn.onclick = function () {
+          if (inputField.value) {
             showPrompt(inputField.value);
           }
-        }
+        };
       };
       window.onkeydown = function (e) {
-        if (e.key == "Enter") {
+        if (e.key == 'Enter') {
           if (inputField.value) {
             showPrompt(inputField.value);
           }
@@ -125,25 +125,53 @@ P.S. The source document has HTML/CSS for the form with fixed positioning, but i
       };
       window.onclick = function (event) {
         if (event.target == cancelBtn) {
-          modal.style.display = "none";
+          modal.style.display = 'none';
           showPrompt(null);
         }
       };
       window.onkeydown = function (event) {
-        if (event.key == "Escape") {
-          modal.style.display = "none";
+        if (event.key == 'Escape') {
+          modal.style.display = 'none';
           showPrompt(null);
         }
       };
-      cancelBtn.onkeydown = function(e){
-        if(e.key == 'Tab'){
-          inputField.focus();
-          return false;
-        }
-      }
+
       function showPrompt(value) {
-        alert("You Entered: " + value);
+        alert('You Entered: ' + value);
       }
+
+      //for loop focus in modalContent for Tab (forwarding focusing); //next part have combined this with tab as well as shift + tab
+      // cancelBtn.onkeydown = function (e) {
+      //   if (e.key == 'Tab') {
+      //     inputField.focus();
+      //     return false;
+      //   }
+      // };
+
+      //for loop focus in modalContent
+      let focusable = document.querySelectorAll('input');
+      console.log(focusable);
+
+      modalContent.onkeydown = function (e) {
+        if (e.key !== 'Tab') return;
+
+        let first = focusable[0];
+        let last = focusable[focusable.length - 1];
+
+        //on modal open focus will be on first ele, on shift + tab , focus will go out of modal by default browser, so we want to shift to last and disable browser default behaviour
+        if (e.shiftKey) {
+          if (document.activeElement == first) {
+            last.focus();
+            e.preventDefault();
+          }
+        } else {
+          //for Tab (forwarding focus)
+          if (document.activeElement == last) {
+            first.focus();
+            e.preventDefault();
+          }
+        }
+      };
     </script>
   </body>
 </html>
