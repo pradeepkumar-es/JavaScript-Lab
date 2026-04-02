@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<body>
+  <!--
+    What will be the output of this code?
+importance: 5
+console.log(1);
+
+setTimeout(() => console.log(2));
+
+Promise.resolve().then(() => console.log(3));
+
+Promise.resolve().then(() => setTimeout(() => console.log(4)));
+
+Promise.resolve().then(() => console.log(5));
+
+setTimeout(() => console.log(6));
+
+console.log(7);
+  -->
+  <script>
+    console.log(1); // normal synchronous code,  executed immediately -> 1
+
+    setTimeout(() => console.log(2));
+    //this is macrotask, callback append console in macrotask queue
+    //macrotask queue content: console.log(2)
+
+    Promise.resolve().then(() => console.log(3));
+    //this is microtask, callabk append console in microtask queue
+    //microtask queue content: console.log(3)
+
+    Promise.resolve().then(() => setTimeout(() => console.log(4)));
+    //this is microtask, callback appened console in microtask queue
+    //microtask queue content: console.log(3), setTimeout(..console.log(4))
+
+    Promise.resolve().then(() => console.log(5));
+    //this is microtask, callback appened console in microtask queue
+    //microtask queue content: console.log(3), setTimeout(..console.log(4)), console.log(5)
+
+    setTimeout(() => console.log(6));
+    //this is macrotask, callback append console in macrotask queue
+    //macrotask queue content: console.log(2), console.log(6)
+
+    console.log(7);
+    //normal synchronous code, executed immediately - > 7
+
+    //result
+    /*
+    //synchronous code
+    1
+    7
+    //all microtask
+    3
+    here no 4 bcz here microtask has setTimeout which get queued at the end of macrotask queue
+    5
+    //macrotask
+    2
+    6
+    4 
+
+
+    */
+  </script>
+</body>
