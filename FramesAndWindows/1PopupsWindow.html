@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body></body>
+    <button id="btn">open popup</button>
+    <button id="btnP">open popup with params</button>
+    <button id="btnref">writeblank</button>
+    <script>
+        // window.open("https://pradeepkumar-es.netlify.app/"); ////it will open in new window//but most modern browser open in new tab as soon as page loads
+        
+        btn.onclick = ()=>{ // to avoid opening popups with lots of ads through evil sites, here it will only open on user triggerd events onclick
+            window.open("https://pradeepkumar-es.netlify.app/"); //it will open in new window//but most modern browser open in new tab
+        }
+
+        //params is string with no space in between with comma separated 
+        let params = `scrollbars=yes,menubar=yes,width=600,height=300,resizable=yes,toolbar=yes,status=yes,location=yes`
+        btnP.onclick = ()=>{
+          window.open("https://pradeepkumar-es.netlify.app/", "Profile", params); 
+        }
+
+        btnref.onclick = ()=>{
+let ref = window.open("about:blank", "hello", `width=200,height=200`); //window open return refrence to the new window
+console.log(ref); //Window {window: Window, self: Window, document: document, name: 'hello', location: Location, …}
+ref.document.write("hello new popup")
+        }
+    </script>
+</body>
+</html>
