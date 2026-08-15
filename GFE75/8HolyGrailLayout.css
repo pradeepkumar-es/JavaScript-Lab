@@ -1,0 +1,154 @@
+/*
+The Holy Grail layout is a famous CSS page layout that has traditionally been hard to implement. It consists of a header, footer, and three columns. The left column contains navigation items, the middle column contains the page content, and the right column contains ads.
+
+Holy Grail layout example
+
+Implement the Holy Grail layout using just CSS. You shouldn't need to change the HTML too much.
+
+Requirements
+Header
+Stretches horizontally across the whole page.
+60px tall.
+Columns
+Both the left and right columns have a fixed width of 100px.
+The center column is fluid-width.
+All the columns should have the same height, regardless of which column is the tallest.
+Footer
+Stretches horizontally across the whole page.
+100px tall.
+The footer should be at the bottom of the page even if there is not enough content to fill the viewport height.
+Hints
+New
+Hint 1: Model the page in two axes
+Use an outer vertical layout for the header, middle region, and footer, then a horizontal layout inside the middle region for the three columns. Keeping those responsibilities separate makes the height and width rules easier to reason about.
+
+Hint 2: Let the middle absorb space
+Give the page a minimum viewport height rather than a fixed height, and let the middle region grow into unused space. Its center column should absorb remaining width while the side columns and top and bottom regions resist shrinking.
+
+Hint 3: Preserve shared column boundaries
+Place all three columns in the same middle container so they share its height even when one contains more content. Include borders and padding in the intended dimensions, and allow the page to grow normally when its content exceeds the viewport.
+*/
+
+
+/*using CSS Flexbox Approach*/
+body {
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+* {
+  box-sizing: border-box;
+}
+
+header,
+nav,
+main,
+aside,
+footer {
+  padding: 12px;
+  text-align: center;
+}
+
+header {
+  height:60px;
+  background-color: tomato;
+}
+.page{
+  display:flex;
+  flex-grow:1;
+}
+nav {
+  flex-shrink:0;
+  width:100px;
+  background-color: coral;
+}
+
+main {
+  flex-grow:1;
+  background-color: moccasin;
+}
+
+aside {
+  flex-shrink:0;
+  width:100px;
+  background-color: sandybrown;
+}
+
+footer {
+  height: 100px;
+  background-color: slategray;
+}
+
+
+
+/* CSS Grid Approach */
+/*
+body {
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+}
+
+#root {
+  text-align: center;
+  min-height: 100vh;
+  display: grid;
+  /*remove commented code and comment .columns css code if all items are direct children of root (when no coloumns div) to work directly */
+  /* grid-template-areas:
+                     'header header header'
+                     'nav main aside'
+                     'footer footer footer'; */
+  grid-template-rows:60px 1fr 100px;
+  /* grid-template-columns: 100px 1fr 100px; */
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+header,
+nav,
+main,
+aside,
+footer {
+  padding: 12px;
+}
+.columns{ /*remove this if all its items are direct children of root*/
+ display: grid;
+ grid-template-columns:100px 1fr 100px ; 
+}
+header {
+  /* grid-area: header; */
+  background-color: tomato;
+}
+
+nav {
+  /* grid-area: nav; */
+  background-color: coral;
+}
+
+main {
+  /* grid-area: main; */
+  background-color: moccasin;
+}
+
+aside {
+  /* grid-area: aside; */
+  background-color: sandybrown;
+}
+
+footer {
+  /* grid-area: footer; */
+  background-color: slategray;
+}
+*/
