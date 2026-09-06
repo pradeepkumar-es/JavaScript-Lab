@@ -1,0 +1,2 @@
+Design an autocomplete component seen on Google and Facebook Search
+//refer https://www.greatfrontend.com/interviews/study/gfe75/questions/system-design/autocomplete
