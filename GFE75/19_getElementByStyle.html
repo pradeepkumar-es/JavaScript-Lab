@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--
+    Implement a function getElementsByStyle(element, property, value) that retrieves all descendant elements of a given DOM element that have a specific computed CSS style.
+
+Press enter or click to view image in full size
+
+const doc = new DOMParser().parseFromString(
+  `<div>
+    <span style="font-size: 12px">Span</span>
+    <p style="font-size: 12px">Paragraph</p>
+    <blockquote style="font-size: 14px">Blockquote</blockquote>
+  </div>`,
+  'text/html',
+);
+
+getElementsByStyle(doc.body, 'font-size', '12px');
+// [span, p] <-- This is an array of elements.
+1.Accept three parameters:
+
+Root Element
+A CSS property as a string
+A CSS value as a string
+2.Search only the descendants of the given element (not the element itself).
+
+3.Return an array of matching elements.
+
+4.Avoid using document.querySelectorAll(), making traversal and manual style checks necessary.
+    -->
+    <div>
+      <span style="font-size: 12px">Span</span>
+      <p style="font-size: 12px">Paragraph</p>
+      <blockquote style="font-size: 14px">Blockquote</blockquote>
+    </div>
+    <script>
+      function getElementsByStyle(element, style, value) {
+        // let childrens = element.children;
+        let camelCaseStyle = "";
+        const styleCamelCase = style.split("-").forEach((item, i) => {
+          if (i == 0) {
+            camelCaseStyle += item;
+          } else {
+            const capitalizedCase = item[0].toUpperCase() + item.slice(1);
+            camelCaseStyle += capitalizedCase;
+          }
+        });
+        let res = [];
+        function traverseAllLevel(element, camelCaseStyle) {
+          for (let item of element.children) {
+            if (window.getComputedStyle(item)[camelCaseStyle] === value) {
+            // if (window.getComputedStyle(item).getPropertyValue(style) === value) { //if we use .getPropertyValue(style) then we do need to camelCase of style manually
+              res.push(item);
+            }
+            traverseAllLevel(item, camelCaseStyle);
+          }
+        }
+        traverseAllLevel(element, camelCaseStyle)
+        return res;
+      }
+      getElementsByStyle(document.body, "font-size", "12px"); //document.body.firstElementChild = is our div element
+      // [span, p] <-- This is an array of elements.
+    </script>
+  </body>
+</html>
